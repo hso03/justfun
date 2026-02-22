@@ -59,7 +59,7 @@ function App() {
       try {
         setLoading(true);
         const response = await axios.get('/api/crawl');
-        setTopics(response.data);
+        setTopics(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
