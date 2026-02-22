@@ -14,6 +14,9 @@ app.get('/api/crawl', async (req, res) => {
   try {
     const url = 'https://finance.naver.com/item/board.naver?code=005930'; // Example: Samsung Electronics
     const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+      },
       responseType: 'arraybuffer',
       responseEncoding: 'binary',
     });
@@ -32,6 +35,8 @@ app.get('/api/crawl', async (req, res) => {
         });
       }
     });
+    
+    console.log('Crawled data:', list); // Log the crawled data
 
     res.json(list);
   } catch (error) {
